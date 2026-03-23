@@ -389,10 +389,6 @@
   body.embed { background: transparent; }
   body.embed .customer-wrap { padding-top: 16px; }
 
-  /* Mobile iframe scroll fix */
-  html, body { overscroll-behavior: none; }
-  .overlay { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
-
   @media(max-width:640px) {
     header { padding: 0 14px; }
     .customer-wrap, .admin-content { padding: 18px 14px; }
@@ -770,15 +766,13 @@ function showView(name) {
 
 function openOverlay(id) {
   document.getElementById(id).classList.add('open');
-  document.body.style.overflow = 'hidden';
   window.parent.postMessage({ type: 'bikeRentalScroll', locked: true }, '*');
+  reportHeight();
 }
 function closeOverlay(id) {
   document.getElementById(id).classList.remove('open');
-  if (!document.querySelector('.overlay.open')) {
-    document.body.style.overflow = '';
-    window.parent.postMessage({ type: 'bikeRentalScroll', locked: false }, '*');
-  }
+  window.parent.postMessage({ type: 'bikeRentalScroll', locked: false }, '*');
+  reportHeight();
 }
 
 function showAdminEntry() {
@@ -1627,12 +1621,16 @@ async function init() {
 
 init();
 
-// Posiela výšku obsahu rodičovskej stránke (pre automatickú výšku iframu)
+// Dynamická výška iframu — kľúčové pre mobile scroll
 function reportHeight() {
-  const h = document.body.scrollHeight;
+  // Ak je overlay otvorený, potrebujeme výšku viewportu (100vh)
+  // Ak nie, použijeme scrollHeight dokumentu
+  const anyOpen = document.querySelector('.overlay.open');
+  const h = anyOpen
+    ? Math.max(document.body.scrollHeight, window.innerHeight)
+    : document.body.scrollHeight;
   window.parent.postMessage({ type: 'bikeRentalHeight', height: h }, '*');
 }
-// Sleduj zmeny výšky
 const _ro = new ResizeObserver(reportHeight);
 _ro.observe(document.body);
 reportHeight();
