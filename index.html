@@ -389,6 +389,10 @@
   body.embed { background: transparent; }
   body.embed .customer-wrap { padding-top: 16px; }
 
+  /* Mobile iframe scroll fix */
+  html, body { overscroll-behavior: none; }
+  .overlay { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+
   @media(max-width:640px) {
     header { padding: 0 14px; }
     .customer-wrap, .admin-content { padding: 18px 14px; }
@@ -399,6 +403,17 @@
 </style>
 </head>
 <body>
+<script>
+// Ak beží v iframe, skry vlastný header (Shoptet má vlastný)
+if (window.self !== window.top) {
+  document.addEventListener('DOMContentLoaded', function() {
+    const h = document.querySelector('header');
+    if (h) { h.style.display = 'none'; }
+    // Kompenzuj padding ktorý bol pre sticky header
+    document.body.style.paddingTop = '0';
+  });
+}
+</script>
 
 <!-- LOADING -->
 <div id="loading-screen">
@@ -636,7 +651,7 @@
 const ADMIN_PASSWORD = 'admin123';
 const API_URL_KEY    = 'bikeRentalApiUrl';
 
-let API_URL = 'https://script.google.com/macros/s/AKfycbwCS6E8GhIDKL5O1jEJbTbJuNX1IWBBzg69aI5HtGzsZJ_gqR2LYZaxqxYbS9Zklyqb/exec'; // hardcoded
+let API_URL = 'https://script.google.com/macros/s/AKfycbwCS6E8GhIDKL5O1jEJbTbJuNX1IWBBzg69aI5HtGzsZJ_gqR2LYZaxqxYbS9Zklyqb/exec';
 
 // ═══════════════════════════════════════════════════════════════════
 //  STATE
@@ -753,8 +768,18 @@ function showView(name) {
   }
 }
 
-function openOverlay(id)  { document.getElementById(id).classList.add('open'); }
-function closeOverlay(id) { document.getElementById(id).classList.remove('open'); }
+function openOverlay(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+  window.parent.postMessage({ type: 'bikeRentalScroll', locked: true }, '*');
+}
+function closeOverlay(id) {
+  document.getElementById(id).classList.remove('open');
+  if (!document.querySelector('.overlay.open')) {
+    document.body.style.overflow = '';
+    window.parent.postMessage({ type: 'bikeRentalScroll', locked: false }, '*');
+  }
+}
 
 function showAdminEntry() {
   if (sessionStorage.getItem('adminLoggedIn') === '1') {
@@ -1581,7 +1606,7 @@ async function init() {
   }
   if (!API_URL) {
     // Žiadna URL — zobraz banner a použij demo dáta
-    // config banner hidden — API URL is hardcoded
+    // config banner disabled
     const dp = defaultPricingTiers();
     bikes = [
       { id:1, name:'Trek Marlin 7',    size:'M (17")', spec:'Horský bicykel, 29" kolesá, hydraulické kotúčové brzdy', emoji:'🚵', image:'', pricing: JSON.parse(JSON.stringify(dp)) },
@@ -1601,6 +1626,16 @@ async function init() {
 }
 
 init();
+
+// Posiela výšku obsahu rodičovskej stránke (pre automatickú výšku iframu)
+function reportHeight() {
+  const h = document.body.scrollHeight;
+  window.parent.postMessage({ type: 'bikeRentalHeight', height: h }, '*');
+}
+// Sleduj zmeny výšky
+const _ro = new ResizeObserver(reportHeight);
+_ro.observe(document.body);
+reportHeight();
 </script>
 <!-- PRICELIST MODAL -->
 <div id="pricelist-modal">
