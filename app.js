@@ -413,8 +413,8 @@ let adminCalBikeId = null;
 function setSyncState(state) {
   const dot   = document.getElementById('sync-dot');
   const label = document.getElementById('sync-label');
-  dot.className   = 'sync-dot ' + (state === 'syncing' ? 'syncing' : state === 'error' ? 'error' : '');
-  label.textContent = state === 'syncing' ? 'Synchronizujem...' : state === 'error' ? 'Chyba spojenia' : 'Online';
+  if (dot) dot.className = 'sync-dot ' + (state === 'syncing' ? 'syncing' : state === 'error' ? 'error' : '');
+  if (label) label.textContent = state === 'syncing' ? 'Synchronizujem...' : state === 'error' ? 'Chyba spojenia' : 'Online';
 }
 
 async function apiCall(action, data = {}) {
@@ -567,7 +567,7 @@ function saveApiUrl() {
   if (!val) return alert('Zadajte URL.');
   API_URL = val;
   localStorage.setItem(API_URL_KEY, val);
-  document.getElementById('config-banner').classList.remove('show');
+  // config banner disabled
   // Detekcia iframe — skry hlavičku
 if (window.self !== window.top) {
   document.body.classList.add('in-iframe');
@@ -1337,7 +1337,7 @@ function renderAdminCal() {
 // ═══════════════════════════════════════════════════════════════════
 
 async function init() {
-  const loadingEl = document.getElementById('loading-screen');
+  const loadingEl = document.getElementById('loading-screen'); // may be null in Shoptet
 
   // Embed mód — ak je ?embed=1 v URL, skry hlavičku
   if (new URLSearchParams(window.location.search).get('embed') === '1') {
@@ -1360,8 +1360,7 @@ async function init() {
     catch (e) { console.warn('Init error:', e); }
   }
   renderCalendar();
-  loadingEl.classList.add('hidden');
-  setTimeout(() => loadingEl.style.display = 'none', 400);
+  if (loadingEl) { loadingEl.classList.add('hidden'); setTimeout(() => loadingEl.style.display = 'none', 400); }
 }
 
 init();
