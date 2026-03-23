@@ -766,12 +766,10 @@ function showView(name) {
 
 function openOverlay(id) {
   document.getElementById(id).classList.add('open');
-  window.parent.postMessage({ type: 'bikeRentalScroll', locked: true }, '*');
   reportHeight();
 }
 function closeOverlay(id) {
   document.getElementById(id).classList.remove('open');
-  window.parent.postMessage({ type: 'bikeRentalScroll', locked: false }, '*');
   reportHeight();
 }
 
@@ -1621,18 +1619,16 @@ async function init() {
 
 init();
 
-// Dynamická výška iframu — kľúčové pre mobile scroll
+// Dynamická výška iframu — iframe nikdy nemá vlastný scroll
 function reportHeight() {
-  // Ak je overlay otvorený, potrebujeme výšku viewportu (100vh)
-  // Ak nie, použijeme scrollHeight dokumentu
   const anyOpen = document.querySelector('.overlay.open');
   const h = anyOpen
-    ? Math.max(document.body.scrollHeight, window.innerHeight)
-    : document.body.scrollHeight;
+    ? Math.max(document.documentElement.scrollHeight, window.screen.height)
+    : document.documentElement.scrollHeight;
   window.parent.postMessage({ type: 'bikeRentalHeight', height: h }, '*');
 }
 const _ro = new ResizeObserver(reportHeight);
-_ro.observe(document.body);
+_ro.observe(document.documentElement);
 reportHeight();
 </script>
 <!-- PRICELIST MODAL -->
