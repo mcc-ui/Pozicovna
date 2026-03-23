@@ -636,7 +636,7 @@
 const ADMIN_PASSWORD = 'admin123';
 const API_URL_KEY    = 'bikeRentalApiUrl';
 
-let API_URL = localStorage.getItem(API_URL_KEY) || '';
+let API_URL = 'https://script.google.com/macros/s/AKfycbwCS6E8GhIDKL5O1jEJbTbJuNX1IWBBzg69aI5HtGzsZJ_gqR2LYZaxqxYbS9Zklyqb/exec'; // hardcoded
 
 // ═══════════════════════════════════════════════════════════════════
 //  STATE
@@ -1581,7 +1581,7 @@ async function init() {
   }
   if (!API_URL) {
     // Žiadna URL — zobraz banner a použij demo dáta
-    document.getElementById('config-banner').classList.add('show');
+    // config banner hidden — API URL is hardcoded
     const dp = defaultPricingTiers();
     bikes = [
       { id:1, name:'Trek Marlin 7',    size:'M (17")', spec:'Horský bicykel, 29" kolesá, hydraulické kotúčové brzdy', emoji:'🚵', image:'', pricing: JSON.parse(JSON.stringify(dp)) },
