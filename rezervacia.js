@@ -57,8 +57,9 @@
     return tiers.length ? Math.min(...tiers.map(t => t.pricePerDay)) : 0;
   }
   function calcTotal(bikeIds, from, to) {
-    if (!bikeIds.length || !from || !to || from >= to) return {total:0, days:0};
-    const days = Math.round((new Date(to+'T12:00:00') - new Date(from+'T12:00:00')) / 86400000);
+    if (!bikeIds.length || !from || !to) return {total:0, days:0};
+    // OD=DO = 1 deň, OD 25 DO 26 = 2 dni
+    const days = Math.round((new Date(to+'T12:00:00') - new Date(from+'T12:00:00')) / 86400000) + 1;
     if (days <= 0) return {total:0, days:0};
     const total = bikeIds.reduce((sum, id) => sum + getPricePerDay(id, days) * days, 0);
     return {total, days};
@@ -754,7 +755,7 @@
 
     if (!selectedBikeIds.length) return alert('Vyberte aspoň jeden bicykel.');
     if (!from || !to) return alert('Vyberte termín OD a DO.');
-    if (from >= to) return alert('Dátum DO musí byť po dátume OD.');
+    if (to < from) return alert('Dátum DO nemôže byť pred dátumom OD.');
     if (!name || !surname) return alert('Vyplňte meno a priezvisko.');
     if (!phone && !email) return alert('Vyplňte telefón alebo e-mail.');
 
@@ -785,6 +786,8 @@
       }
 
       closeModal('jb-res-modal');
+      // Refresh dát z databázy aby všetky zariadenia videli aktuálnu dostupnosť
+      loadData();
 
       // Zobraziť ďakovnú stránku
       const bikeNames = selectedBikeIds.map(id => state.bikes.find(b=>b.id===id)?.name||id).join(', ');
