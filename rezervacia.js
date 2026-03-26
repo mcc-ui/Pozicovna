@@ -85,6 +85,12 @@
       }));
       state.documents = data.documents || {};
       state.loading = false;
+      // Debug - skontroluj dáta v konzole
+      if (state.reservations.length) {
+        const r = state.reservations[0];
+        console.log('[JB] Rezervácia:', JSON.stringify({id: r.id, from: r.from, to: r.to, bikeIds: r.bikeIds}));
+        console.log('[JB] Bikes:', state.bikes.map(b => ({id: b.id, type: typeof b.id})));
+      }
       if (!silent) render();
     } catch(e) {
       state.error = e.message;
