@@ -194,8 +194,12 @@
   @keyframes jbSpin { to{transform:rotate(360deg)} }
 
   /* Dokument modal */
-  .jb-doc-content { max-height:55vh; overflow-y:auto; padding-right:6px; font-size:.85rem; line-height:1.7; }
-  .jb-doc-content h4 { font-size:.9rem; font-weight:700; margin:12px 0 5px; }
+  .jb-doc-content { max-height:55vh; overflow-y:auto; padding-right:6px; font-size:16px; line-height:1.8; color:#222; }
+.jb-pricing-tiers { margin-top:8px; border-top:1px solid #f0f0f0; padding-top:7px; display:flex; flex-direction:column; gap:3px; }
+.jb-price-tier { display:flex; justify-content:space-between; align-items:center; font-size:12px; color:#555; padding:2px 0; }
+.jb-pt-label { color:#777; }
+.jb-pt-price { font-weight:600; color:#111; }
+  .jb-doc-content h4 { font-size:18px; font-weight:700; margin:14px 0 6px; color:#111; }
   `;
 
   // ── Injekt CSS ────────────────────────────────────────────────────
@@ -345,7 +349,7 @@
         <div class="jb-modal-title" id="jb-doc-title"></div>
         <div class="jb-doc-content" id="jb-doc-content"></div>
         <div style="margin-top:16px;text-align:right">
-          <button class="jb-btn jb-btn-ghost" id="jb-doc-ok">Rozumiem</button>
+          <button class="jb-btn jb-btn-ghost" id="jb-doc-ok" style="font-size:15px;padding:10px 20px">Rozumiem</button>
         </div>
       </div>
     </div>
@@ -472,11 +476,15 @@
       const unavail = busyInRange.has(b.id) && !selectedBikeIds.includes(b.id);
       const sel = selectedBikeIds.includes(b.id);
       const img = b.image ? `<img src="${b.image}" alt="${b.name}">` : `<div class="jb-bike-ph">${b.emoji||'🚲'}</div>`;
+      const tiers = (b.pricing && b.pricing.length) ? b.pricing : state.pricing;
+      const pricingHtml = tiers.map(t =>
+        `<div class="jb-price-tier"><span class="jb-pt-label">${t.label}</span><span class="jb-pt-price">${t.pricePerDay} €/deň</span></div>`
+      ).join('');
       return `<div class="jb-bike-card ${sel?'sel':''} ${unavail?'unavail':''}" data-bike="${b.id}">
         ${img}
         <div class="jb-bike-name">${b.name}</div>
         <div class="jb-bike-size">Veľkosť: ${b.size}</div>
-        <div class="jb-bike-price">od ${getMinPrice(b.id)} €/deň</div>
+        <div class="jb-pricing-tiers">${pricingHtml}</div>
         <div class="jb-bike-check">✓</div>
       </div>`;
     }).join('');
