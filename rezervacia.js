@@ -81,7 +81,25 @@
       state.pricing = data.pricing || [];
       state.reservations = (data.reservations || []).map(r => ({
         ...r,
-        bikeIds: Array.isArray(r.bikeIds) ? r.bikeIds.map(Number) : (r.bikeIds ? String(r.bikeIds).split(',').map(x => Number(x.trim())).filter(x => !isNaN(x)) : [])
+        bikeIds: (function(raw) {
+          if (!raw) return [];
+          if (Array.isArray(raw)) {
+            // Môže prísť ako [1.2] kvôli SK formátu - ošetri
+            var result = [];
+            raw.forEach(function(x) {
+              var s = String(x);
+              // Ak je to float ako 1.2 (SK formát pre "1,2"), rozdeľ na čísla
+              if (s.indexOf('.') > -1 && !s.match(/^\d+\.\d+$/)) {
+                s.split('.').forEach(function(n) { var p = parseInt(n,10); if (!isNaN(p)) result.push(p); });
+              } else {
+                s.split(/[,;]/).forEach(function(n) { var p = parseInt(n.trim(),10); if (!isNaN(p)) result.push(p); });
+              }
+            });
+            return result;
+          }
+          // String "1,2" alebo "1;2"
+          return String(raw).split(/[,;]/).map(function(x) { return parseInt(x.trim(),10); }).filter(function(x) { return !isNaN(x); });
+        })(r.bikeIds)
       }));
       state.documents = data.documents || {};
       state.loading = false;
