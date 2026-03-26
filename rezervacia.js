@@ -166,14 +166,14 @@
 
   /* Ďakovná strana */
   .jb-ty { text-align:center; padding:20px 0; }
-  .jb-ty-icon { width:64px; height:64px; background:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem; margin:0 auto 16px; }
-  .jb-ty h2 { font-size:1.6rem; font-weight:700; margin-bottom:8px; }
-  .jb-ty p { color:#777; font-size:.9rem; line-height:1.6; margin-bottom:20px; }
-  .jb-ty-details { background:#f9f9f9; border-radius:10px; padding:16px; text-align:left; margin-bottom:20px; }
-  .jb-ty-row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #e5e5e5; font-size:.85rem; }
+  .jb-ty-icon { width:72px; height:72px; background:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 20px; }
+  .jb-ty h2 { font-size:28px; font-weight:700; margin-bottom:10px; color:#111; }
+  .jb-ty p { color:#555; font-size:16px; line-height:1.7; margin-bottom:24px; }
+  .jb-ty-details { background:#f9f9f9; border-radius:10px; padding:18px; text-align:left; margin-bottom:24px; }
+  .jb-ty-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #e5e5e5; font-size:15px; }
   .jb-ty-row:last-child { border:none; }
   .jb-ty-row .k { color:#777; }
-  .jb-ty-row .v { font-weight:600; }
+  .jb-ty-row .v { font-weight:600; color:#111; }
 
   /* Admin */
   .jb-admin-wrap { display:flex; min-height:400px; }
@@ -334,10 +334,10 @@
       <div class="jb-modal">
         <div class="jb-ty">
           <div class="jb-ty-icon">✓</div>
-          <h2>Ďakujeme!</h2>
-          <p>Vaša rezervácia bola prijatá. Budeme vás kontaktovať na zadanom telefóne alebo e-maile.</p>
+          <h2>🎉 Rezervácia bola prijatá!</h2>
+          <p>Ďakujeme! Vašu rezerváciu sme úspešne zaznamenali. Čoskoro vás budeme kontaktovať na zadanom telefóne alebo e-maile a potvrdíme vám termín.</p>
           <div class="jb-ty-details" id="jb-ty-details"></div>
-          <button class="jb-btn jb-btn-primary" id="jb-ty-close">← Späť na kalendár</button>
+          <button class="jb-btn jb-btn-primary" id="jb-ty-close" style="font-size:15px;padding:12px 24px">← Späť na kalendár</button>
         </div>
       </div>
     </div>
