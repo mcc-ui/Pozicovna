@@ -6,7 +6,7 @@
 (function() {
   'use strict';
 
-  const API = 'https://script.google.com/macros/s/AKfycbzlfF6tyGa2gQ-vngR2dcZwRjZHAEhJ54m6Hqe-C88reEzsA3N1qyR25vkMiNffKX88/exec';
+  const API = 'https://script.google.com/macros/s/AKfycbwCS6E8GhIDKL5O1jEJbTbJuNX1IWBBzg69aI5HtGzsZJ_gqR2LYZaxqxYbS9Zklyqb/exec';
   const ADMIN_HASH = '#admin-jericho';
   const ADMIN_PASS = 'admin123';
 
@@ -41,7 +41,7 @@
     const busy = new Set();
     state.reservations.forEach(r => {
       if (excludeId && r.id == excludeId) return;
-      if (datesInRange(r.from, r.to).includes(dateStr)) r.bikeIds.forEach(id => busy.add(id));
+      if (datesInRange(r.from, r.to).includes(dateStr)) r.bikeIds.forEach(id => busy.add(Number(id)));
     });
     return busy;
   }
@@ -81,7 +81,7 @@
       state.pricing = data.pricing || [];
       state.reservations = (data.reservations || []).map(r => ({
         ...r,
-        bikeIds: Array.isArray(r.bikeIds) ? r.bikeIds : (r.bikeIds ? String(r.bikeIds).split(',').map(Number) : [])
+        bikeIds: Array.isArray(r.bikeIds) ? r.bikeIds.map(Number) : (r.bikeIds ? String(r.bikeIds).split(',').map(x => Number(x.trim())).filter(x => !isNaN(x)) : [])
       }));
       state.documents = data.documents || {};
       state.loading = false;
@@ -266,7 +266,7 @@
       const isPast = dStr < todayStr;
       const busy = getBusyBikes(dStr);
       const dots = state.bikes.map(b =>
-        `<div class="${busy.has(b.id) ? 'jb-dot-r' : 'jb-dot-g'}" title="${b.name}"></div>`
+        `<div class="${busy.has(Number(b.id)) ? 'jb-dot-r' : 'jb-dot-g'}" title="${b.name}"></div>`
       ).join('');
       const cls = ['jb-cal-day', isPast ? 'jb-past' : '', dStr === todayStr ? 'jb-today' : ''].filter(Boolean).join(' ');
       days += `<div class="${cls}" data-date="${dStr}"><div class="jb-dn">${d}</div><div class="jb-dots">${dots}</div></div>`;
@@ -474,7 +474,7 @@
     }
 
     grid.innerHTML = state.bikes.map(b => {
-      const unavail = busyInRange.has(b.id) && !selectedBikeIds.includes(b.id);
+      const unavail = busyInRange.has(Number(b.id)) && !selectedBikeIds.map(Number).includes(Number(b.id));
       const sel = selectedBikeIds.includes(b.id);
       const img = b.image ? `<img src="${b.image}" alt="${b.name}">` : `<div class="jb-bike-ph">${b.emoji||'🚲'}</div>`;
       const tiers = (b.pricing && b.pricing.length) ? b.pricing : state.pricing;
