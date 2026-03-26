@@ -83,22 +83,32 @@
         ...r,
         bikeIds: (function(raw) {
           if (!raw) return [];
+          var ids = [];
+          // Normalizuj na string a rozdeľ
+          var s = Array.isArray(raw) ? raw.join(',') : String(raw);
+          // Nahraď bodku čiarkou (SK desatinný formát: 1.2 = "1,2")
+          // ale len ak je to celé číslo s bodkou, nie skutočný float s desatinami
+          // "1.2" → "1,2", "1.20" → "1,20" → split → [1, 20] nie je správne
+          // Lepšie: ak array obsahuje float, rozdeľ ho
           if (Array.isArray(raw)) {
-            // Môže prísť ako [1.2] kvôli SK formátu - ošetri
-            var result = [];
             raw.forEach(function(x) {
-              var s = String(x);
-              // Ak je to float ako 1.2 (SK formát pre "1,2"), rozdeľ na čísla
-              if (s.indexOf('.') > -1 && !s.match(/^\d+\.\d+$/)) {
-                s.split('.').forEach(function(n) { var p = parseInt(n,10); if (!isNaN(p)) result.push(p); });
+              var n = Number(x);
+              if (Number.isInteger(n)) {
+                ids.push(n);
               } else {
-                s.split(/[,;]/).forEach(function(n) { var p = parseInt(n.trim(),10); if (!isNaN(p)) result.push(p); });
+                // Float napr 1.2 → interpretuj ako "1,2" → [1, 2]
+                String(x).split('.').forEach(function(p) {
+                  var v = parseInt(p, 10);
+                  if (!isNaN(v) && v > 0) ids.push(v);
+                });
               }
             });
-            return result;
+            return ids;
           }
-          // String "1,2" alebo "1;2"
-          return String(raw).split(/[,;]/).map(function(x) { return parseInt(x.trim(),10); }).filter(function(x) { return !isNaN(x); });
+          // String: "1,2" alebo "1;2" alebo "1.2"
+          return s.replace(/\./g, ',').split(/[,;]/).map(function(x) {
+            return parseInt(x.trim(), 10);
+          }).filter(function(x) { return !isNaN(x) && x > 0; });
         })(r.bikeIds)
       }));
       state.documents = data.documents || {};
