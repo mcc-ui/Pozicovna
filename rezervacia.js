@@ -798,7 +798,8 @@
         ${email ? `<div class="jb-ty-row"><span class="k">E-mail</span><span class="v">${email}</span></div>` : ''}
       `;
       openModal('jb-ty-modal');
-      render(); // Obnov kalendár
+      // render() sa zavolá až keď zákazník klikne "Späť na kalendár"
+      // (nie tu - inak by prekreslil DOM a zatvoril modal)
     } catch(e) {
       alert('Chyba pri odoslaní: ' + e.message);
     } finally {
