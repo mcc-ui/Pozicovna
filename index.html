@@ -10,7 +10,7 @@
   :root {
     --green:   #2ECC71;
     --red:     #cd433d;
-    --bg:      #f4f4f4;
+    --bg:      #ffffff;
     --dark:    #1d1d1b;
     --accent:  #cd433d;      /* červená – akcentová farba jericho.bike */
     --accent2: #a8332e;      /* tmavšia červená pre hover */
@@ -22,7 +22,7 @@
     --radius:  4px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Inter', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.55; }
+  body { font-family: 'Inter', Arial, sans-serif; background: #ffffff; color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.55; }
 
   /* ── LOADING ── */
   #loading-screen {
@@ -100,14 +100,14 @@
   .view.active { display: block; }
 
   /* ── CUSTOMER ── */
-  .customer-wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
+  .customer-wrap { max-width: 960px; margin: 0 auto; padding: 8px 20px; }
   .section-title { font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; letter-spacing: -0.3px; }
   .section-sub { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
 
   /* CALENDAR */
   .calendar-card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; margin-bottom: 32px; border: 1px solid var(--border); }
   .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-  .cal-title { font-size: 1.05rem; font-weight: 700; color: var(--dark); }
+  .cal-title { font-size: 1.25rem; font-weight: 700; color: var(--dark); }
   .cal-nav { display: flex; gap: 6px; }
   .cal-nav button {
     width: 32px; height: 32px; border-radius: var(--radius);
@@ -118,25 +118,25 @@
   }
   .cal-nav button:hover { border-color: var(--accent); color: var(--accent); background: #fff5f5; }
   .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
-  .cal-dow { text-align: center; font-size: 0.7rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; padding: 6px 0 8px; }
+  .cal-dow { text-align: center; font-size: 0.78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; padding: 8px 0 10px; }
   .cal-day {
-    border-radius: var(--radius); padding: 6px 3px;
+    border-radius: var(--radius); padding: 10px 4px;
     cursor: pointer; transition: all 0.14s; text-align: center;
-    border: 1px solid transparent; min-height: 66px;
-    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    border: 1px solid transparent; min-height: 80px;
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
     background: #fff;
   }
   .cal-day:hover:not(.past):not(.empty) { border-color: var(--accent); background: #fff5f5; }
   .cal-day.past { opacity: 0.3; cursor: default; pointer-events: none; background: #fafafa; }
   .cal-day.empty { cursor: default; pointer-events: none; background: transparent; }
   .cal-day.today { background: #fff5f5; border-color: var(--accent); }
-  .cal-day .day-num { font-size: 0.88rem; font-weight: 600; color: var(--dark); line-height: 1; }
+  .cal-day .day-num { font-size: 1.1rem; font-weight: 700; color: var(--dark); line-height: 1; }
   .cal-day.past .day-num { color: #bbb; }
   .dots { display: flex; gap: 3px; justify-content: center; flex-wrap: wrap; margin-top: 2px; }
-  .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; }
   .dot.avail { background: var(--green); }
   .dot.busy { background: var(--red); }
-  .legend { display: flex; gap: 18px; margin-top: 14px; font-size: 0.78rem; color: var(--muted); }
+  .legend { display: flex; gap: 18px; margin-top: 16px; font-size: 0.88rem; color: var(--muted); }
   .legend-item { display: flex; align-items: center; gap: 5px; }
 
   /* ── OVERLAY & MODAL ── */
@@ -144,7 +144,7 @@
   .overlay.open { display: flex; align-items: flex-start; justify-content: center; }
   .modal {
     background: var(--card); border-radius: var(--radius);
-    padding: 28px 32px; max-width: 660px; width: 100%;
+    padding: 32px 36px; max-width: 760px; width: 100%;
     position: relative; box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     animation: slideUp 0.22s ease; border-top: 3px solid var(--accent);
   }
@@ -158,8 +158,8 @@
     color: var(--muted); transition: all 0.15s;
   }
   .modal-close:hover { background: var(--dark); color: #fff; border-color: var(--dark); }
-  .modal-title { font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
-  .modal-sub { color: var(--muted); font-size: 0.84rem; margin-bottom: 20px; }
+  .modal-title { font-size: 1.4rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .modal-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
 
   /* BIKE CARDS IN FORM */
   .bikes-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
@@ -172,16 +172,16 @@
   .bike-card:hover { border-color: var(--accent); background: #fff5f5; }
   .bike-card.selected { border-color: var(--accent); background: #fff5f5; border-width: 2px; }
   .bike-card.unavailable { opacity: 0.38; cursor: not-allowed; pointer-events: none; }
-  .bike-card img { width: 100%; height: 85px; object-fit: cover; border-radius: 2px; margin-bottom: 8px; background: var(--bg); }
+  .bike-card img { width: 100%; height: 110px; object-fit: contain; border-radius: 2px; margin-bottom: 8px; background: #f8f8f8; padding: 4px; }
   .bike-img-placeholder {
-    width: 100%; height: 85px; border-radius: 2px; margin-bottom: 8px;
+    width: 100%; height: 110px; border-radius: 2px; margin-bottom: 8px;
     background: #f0f0f0; display: flex; align-items: center;
     justify-content: center; font-size: 2rem;
   }
-  .bike-name { font-size: 0.84rem; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
-  .bike-size { font-size: 0.72rem; color: var(--muted); margin-bottom: 3px; }
-  .bike-spec { font-size: 0.7rem; color: var(--muted); line-height: 1.4; margin-bottom: 6px; }
-  .bike-price { font-size: 0.82rem; font-weight: 700; color: var(--accent2); }
+  .bike-name { font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+  .bike-size { font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; }
+  .bike-spec { font-size: 0.78rem; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+  .bike-price { font-size: 0.92rem; font-weight: 700; color: var(--accent2); }
   .bike-pricelist-link { font-size: 0.68rem; color: var(--muted); cursor: pointer; background: none; border: none; padding: 0; text-decoration: underline; text-underline-offset: 2px; display: block; margin-top: 3px; text-align: left; }
   .bike-pricelist-link:hover { color: var(--accent); }
   /* Cenník — fixný panel nad všetkým, nie vnorený v kartičke */
@@ -231,11 +231,11 @@
   @media(max-width:500px) { .form-row { grid-template-columns: 1fr; } }
   .form-group { display: flex; flex-direction: column; gap: 4px; }
   .form-group.full { grid-column: 1/-1; }
-  label { font-size: 0.78rem; font-weight: 600; color: var(--dark); text-transform: uppercase; letter-spacing: 0.4px; }
+  label { font-size: 0.82rem; font-weight: 600; color: var(--dark); text-transform: uppercase; letter-spacing: 0.4px; }
   input, select, textarea {
-    padding: 9px 12px; border: 1px solid var(--border);
+    padding: 11px 14px; border: 1px solid var(--border);
     border-radius: var(--radius); font-family: inherit;
-    font-size: 0.88rem; color: var(--text);
+    font-size: 0.95rem; color: var(--text);
     background: #fff; outline: none; transition: border-color 0.15s;
   }
   input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(205,67,61,0.12); }
@@ -247,9 +247,9 @@
     margin-bottom: 18px; display: flex; align-items: center;
     justify-content: space-between; border-left: 4px solid var(--accent);
   }
-  .price-label { font-size: 0.8rem; color: rgba(255,255,255,0.55); }
-  .price-total { font-size: 1.7rem; font-weight: 700; color: #fff; }
-  .price-detail { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 1px; }
+  .price-label { font-size: 0.88rem; color: rgba(255,255,255,0.55); }
+  .price-total { font-size: 2rem; font-weight: 700; color: #fff; }
+  .price-detail { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-top: 2px; }
   .info-links { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
   .info-link {
     display: inline-flex; align-items: center; gap: 5px;
@@ -396,21 +396,33 @@
     .admin-sidebar { display: none; }
     .admin-cal-wrap { grid-template-columns: 1fr; }
   }
+
+  /* ── jericho.bike požičovňa obsah ── */
+  .jb-rental { color: #111; background: #fff; font-family: inherit; }
+  .jb-rental * { box-sizing: border-box; }
+  .jb-dot { width: 8px; height: 8px; border-radius: 50%; background: #cd433d; display: inline-block; }
+  .jb-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #111; }
+  .jb-actions { display: flex; gap: 14px; margin-top: 20px; flex-wrap: wrap; }
+  .jb-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; border-radius: 10px; font-weight: 700; font-size: 15px; text-decoration: none; transition: .2s; }
+  .jb-btn-primary { background: #cd433d; color: #fff; }
+  .jb-btn-primary:hover { background: #a8332e; }
+  .jb-btn-secondary { border: 1px solid #e0e0e0; color: #111; background: #fff; }
+  .jb-btn-secondary:hover { background: #f5f5f5; }
+  .jb-card { background: #fff; border: 1px solid rgba(0,0,0,.08); border-radius: 16px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+  .jb-bike-photo { width: 100%; aspect-ratio: 16/10; border: 1px solid rgba(0,0,0,.08); border-radius: 12px; background: linear-gradient(180deg,#fafafa,#f2f2f2); overflow: hidden; margin: 12px 0 16px; }
+  .jb-bike-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .jb-grid { display: grid; gap: 20px; }
+  .jb-grid-2 { grid-template-columns: 1fr 1fr; }
+  .jb-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .jb-section { padding: 0 0 32px; }
+  .jb-list { display: grid; gap: 8px; }
+  .jb-list-item { display: flex; gap: 10px; align-items: flex-start; }
+  .jb-check { color: #cd433d; font-weight: 700; flex-shrink: 0; }
+  @media(max-width: 700px) { .jb-grid-2, .jb-grid-3 { grid-template-columns: 1fr; } }
+
 </style>
 </head>
 <body>
-<script>
-// Ak beží v iframe, skry vlastný header (Shoptet má vlastný)
-if (window.self !== window.top) {
-  document.addEventListener('DOMContentLoaded', function() {
-    const h = document.querySelector('header');
-    if (h) { h.style.display = 'none'; }
-    // Kompenzuj padding ktorý bol pre sticky header
-    document.body.style.paddingTop = '0';
-  });
-}
-</script>
-
 <!-- LOADING -->
 <div id="loading-screen">
   <div class="loading-logo">Jericho<span>:Bike</span> Požičovňa</div>
@@ -425,29 +437,210 @@ if (window.self !== window.top) {
   <button onclick="saveApiUrl()">Uložiť a načítať</button>
 </div>
 
-<header>
-  <div class="logo">
-    <img src="https://cdn.myshoptet.com/usr/www.jericho.bike/user/logos/logo-shoptet1.png"
-         alt="Jericho Bike" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
-    <span style="display:none;color:#fff;font-weight:700">Jericho<span style="color:var(--accent)">:Bike</span></span>
-    <span style="color:rgba(255,255,255,0.35);margin:0 10px;font-weight:300">|</span>
-    <span style="font-size:0.88rem;font-weight:500;color:rgba(255,255,255,0.7)">Požičovňa</span>
-  </div>
-  <div class="nav-btns">
-    <div class="sync-indicator" id="sync-indicator">
-      <div class="sync-dot" id="sync-dot"></div>
-      <span id="sync-label">Online</span>
+<!-- JERICHO.BIKE POZICOVNA CONTENT -->
+<div class="jb-page-content">
+
+  <!-- HERO -->
+  <div class="jb-hero">
+    <div class="jb-eyebrow"><span class="jb-dot"></span> POŽIČOVŇA E-BAJKOV JERICHO:BIKE</div>
+    <h1>Požičaj si e-bike a vyraz na jazdu bez starostí.</h1>
+    <p>Ponúkame prémiové e-bicykle pripravené na výlety aj testovanie. Pred odovzdaním bicykel skontrolujeme, zapíšeme jeho stav a vysvetlíme všetko potrebné pre bezpečnú jazdu.</p>
+    <div class="jb-actions">
+      <a href="tel:+421950431016" class="jb-btn jb-btn-primary">📞 Rezervácia: +421 950 431 016</a>
+      <a href="/cdn-cgi/l/email-protection#8fe6e1e9e0cfe5eafde6ece7e0a1ede6e4ea" class="jb-btn jb-btn-secondary">Napísať e-mail</a>
     </div>
-    <button class="btn btn-outline btn-sm" onclick="showView('customer')">Rezervácie</button>
-    <button class="btn btn-primary btn-sm" onclick="showAdminEntry()">Admin</button>
   </div>
-</header>
+
+  <!-- BICYKLE -->
+  <div class="jb-section">
+    <h2>Aké e-biky požičiavame</h2>
+    <p style="margin-bottom:24px">V požičovni nájdeš modely Scott pripravené na pohodové výjazdy aj náročnejší terén. Vybrať si môžeš podľa veľkosti a preferovaného typu jazdy.</p>
+    <div class="jb-grid jb-grid-2">
+      <div class="jb-card">
+        <div class="jb-bike-photo">
+          <img src="https://cdn.myshoptet.com/usr/www.jericho.bike/user/documents/upload/1.jpg" alt="Scott Contessa Active eRide 920">
+        </div>
+        <h3>Scott Contessa Active eRide 920</h3>
+        <p><strong>Dostupné veľkosti:</strong> S a M</p>
+        <p>Univerzálny e-MTB hardtail vhodný na rekreačné jazdenie, výlety, lesné a poľné cesty aj bežné objavovanie okolia. Je ideálnou voľbou pre jazdcov, ktorí chcú komfortný a ľahko ovládateľný e-bike.</p>
+        <p><strong>Cena:</strong> 35 Eur / deň<br><strong>Vratná kaucia:</strong> 300 Eur</p>
+      </div>
+      <div class="jb-card">
+        <div class="jb-bike-photo">
+          <img src="https://cdn.myshoptet.com/usr/www.jericho.bike/user/documents/upload/2.jpg" alt="Scott Contessa Strike eRide 930">
+        </div>
+        <h3>Scott Contessa Strike eRide 930</h3>
+        <p><strong>Dostupná veľkosť:</strong> L</p>
+        <p>Celoodpružený e-bike pre jazdcov, ktorí chcú viac pohodlia a istoty aj v náročnejšom teréne. Vhodný na dlhšie výjazdy, rozbitejšie traily aj dynamickejšiu jazdu mimo asfaltu.</p>
+        <p><strong>Cena:</strong> 45 Eur / deň<br><strong>Vratná kaucia:</strong> 300 Eur</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AKO FUNGUJE -->
+  <div class="jb-section">
+    <h2>Ako funguje prenájom</h2>
+    <div class="jb-grid jb-grid-3">
+      <div class="jb-card"><h3>1. Rezervácia</h3><p>Dohodneme termín prenájmu a pripravíme bicykel.</p></div>
+      <div class="jb-card"><h3>2. Prevzatie bicykla</h3><p>Podpisuje sa zmluva a vypĺňa odovzdávací protokol so stavom kilometrov, batérie a aktuálnym stavom bicykla.</p></div>
+      <div class="jb-card"><h3>3. Jazda</h3><p>Počas prenájmu zodpovedá nájomca za bicykel a jeho primerané používanie.</p></div>
+      <div class="jb-card"><h3>4. Vrátenie bicykla</h3><p>Pri vrátení sa spisuje preberací protokol a zaznamenáva stav bicykla.</p></div>
+      <div class="jb-card"><h3>5. Kontrola mechanikom</h3><p>Bicykel následne prechádza technickou kontrolou mechanikom.</p></div>
+      <div class="jb-card"><h3>6. Vrátenie kaucie</h3><p>Kaucia sa vracia po kontrole bicykla spravidla do 24 hodín (alebo najbližší pracovný deň do 16:00).</p></div>
+    </div>
+  </div>
+
+  <!-- CO VEDIET -->
+  <div class="jb-section">
+    <h2>Čo je dobré vedieť pred požičaním</h2>
+    <div class="jb-grid jb-grid-2">
+      <div class="jb-card">
+        <h3>Základné pravidlá</h3>
+        <div class="jb-list">
+          <div class="jb-list-item"><span class="jb-check">✓</span><span>Prenájom prebieha na základe zmluvy.</span></div>
+          <div class="jb-list-item"><span class="jb-check">✓</span><span>Pri prevzatí aj vrátení bicykla sa vypĺňa protokol.</span></div>
+          <div class="jb-list-item"><span class="jb-check">✓</span><span>Nájomca zodpovedá za bicykel počas prenájmu.</span></div>
+          <div class="jb-list-item"><span class="jb-check">✓</span><span>Bicykel je potrebné zabezpečiť proti krádeži.</span></div>
+        </div>
+      </div>
+      <div class="jb-card">
+        <h3>Kaucia a poškodenia</h3>
+        <div class="jb-list">
+          <div class="jb-list-item"><span class="jb-check">✓</span><span>Pri prenájme sa skladá vratná kaucia.</span></div>
+          <div class="jb-list-item"><span class="jb-check">✓</span><span>Náklady na opravu sa môžu odpočítať z kaucie.</span></div>
+          <div class="jb-list-item"><span class="jb-check">✓</span><span>Výška nákladov sa riadi orientačným cenníkom servisu.</span></div>
+          <div class="jb-list-item"><span class="jb-check">✓</span><span>Kauciu nie je možné nárokovať okamžite bez kontroly bicykla.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KONTAKT -->
+  <div class="jb-section">
+    <h2>Kontakt</h2>
+    <div class="jb-card">
+      <p>Ak si chceš overiť dostupnosť bicykla alebo rezervovať termín, ozvi sa nám.</p>
+      <div class="jb-contact-meta">
+        <span class="jb-chip">📞 +421 950 431 016</span>
+        <span class="jb-chip">✉️ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3daddd5dcf3d9d6c1dad0dbdc9dd1dad8d6">[email&#160;protected]</a></span>
+        <span class="jb-chip">📍 Brezová 2, Malacky</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- REZERVACIA NADPIS -->
+  <div class="jb-section">
+    <h2>Online rezervácia</h2>
+    <p>Vyberte si termín a bicykel priamo v kalendári nižšie.</p>
+  </div>
+
+</div>
+
+<!-- STYLES PRE OBSAH -->
+<style>
+.jb-page-content { max-width: 960px; margin: 0 auto; padding: 0 20px 0; }
+.jb-hero { padding: 32px 0 24px; }
+.jb-hero h1 { font-family: inherit; font-size: clamp(26px,4vw,40px); font-weight: 800; color: #111; margin: 12px 0 14px; line-height: 1.15; }
+.jb-hero p { font-size: 16px; color: #555; line-height: 1.65; margin-bottom: 20px; }
+.jb-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #111; margin-bottom: 8px; }
+.jb-dot { width: 8px; height: 8px; border-radius: 50%; background: #cd433d; flex-shrink: 0; }
+.jb-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.jb-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 10px; font-weight: 700; font-size: 14px; text-decoration: none; transition: .15s; }
+.jb-btn-primary { background: #cd433d; color: #fff; }
+.jb-btn-primary:hover { background: #a8332e; }
+.jb-btn-secondary { border: 1px solid #e0e0e0; color: #111; background: #fff; }
+.jb-btn-secondary:hover { border-color: #cd433d; color: #cd433d; }
+.jb-section { padding: 24px 0 8px; }
+.jb-section h2 { font-family: inherit; font-size: clamp(20px,3vw,28px); font-weight: 800; color: #111; margin-bottom: 6px; }
+.jb-section p { font-size: 15px; color: #555; line-height: 1.6; }
+.jb-grid { display: grid; gap: 16px; }
+.jb-grid-2 { grid-template-columns: 1fr 1fr; }
+.jb-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.jb-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.jb-card h3 { font-family: inherit; font-size: 16px; font-weight: 700; color: #111; margin-bottom: 8px; }
+.jb-card p { font-size: 14px; color: #555; line-height: 1.55; margin-bottom: 6px; }
+.jb-bike-photo { width: 100%; aspect-ratio: 16/10; border: 1px solid #eee; border-radius: 10px; overflow: hidden; margin-bottom: 14px; background: #f8f8f8; }
+.jb-bike-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.jb-list { display: grid; gap: 8px; margin-top: 10px; }
+.jb-list-item { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: #444; }
+.jb-check { color: #cd433d; font-weight: 700; flex-shrink: 0; }
+.jb-contact-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.jb-chip { border: 1px solid #e0e0e0; padding: 7px 14px; border-radius: 999px; font-size: 14px; background: #fafafa; color: #333; }
+@media (max-width: 700px) { .jb-grid-2, .jb-grid-3 { grid-template-columns: 1fr; } }
+</style>
 
 <!-- CUSTOMER VIEW -->
 <div id="view-customer" class="view active">
   <div class="customer-wrap">
-    <div class="section-title">Rezervujte si bicykel</div>
-    <p class="section-sub">Kliknite na dátum v kalendári a vyberte si bicykel, ktorý si chcete požičať.</p>
+    <!-- Obsah stránky Požičovňa -->
+    <div class="jb-rental">
+      <div class="jb-section">
+        <div class="jb-eyebrow"><span class="jb-dot"></span> Požičovňa e‑bajkov Jericho:Bike</div>
+        <h1 style="font-size:clamp(28px,4vw,44px);font-weight:800;color:#111;margin:14px 0 10px;line-height:1.1">Požičaj si e‑bike a vyraz na jazdu bez starostí.</h1>
+        <p style="color:#555;font-size:17px;line-height:1.65;margin:0 0 20px;max-width:680px">Ponúkame prémiové e‑bicykle pripravené na výlety aj testovanie. Pred odovzdaním bicykel skontrolujeme, zapíšeme jeho stav a vysvetlíme všetko potrebné pre bezpečnú jazdu.</p>
+        <div class="jb-actions">
+          <a href="tel:+421950431016" class="jb-btn jb-btn-primary">📞 Rezervácia: +421 950 431 016</a>
+          <a href="/cdn-cgi/l/email-protection#462f282029062c23342f252e2968242f2d23" class="jb-btn jb-btn-secondary">✉️ Napísať e‑mail</a>
+        </div>
+      </div>
+
+      <div class="jb-section" style="padding-top:0">
+        <h2 style="font-size:clamp(22px,3vw,30px);font-weight:800;color:#111;margin:0 0 20px">Aké e-biky požičiavame</h2>
+        <p style="color:#555;font-size:15px;margin:0 0 24px">V požičovni nájdeš modely Scott pripravené na pohodové výjazdy aj náročnejší terén. Vybrať si môžeš podľa veľkosti a preferovaného typu jazdy.</p>
+        <div class="jb-grid jb-grid-2" style="gap:20px;margin-bottom:32px">
+          <div class="jb-card">
+            <h3 style="font-size:18px;font-weight:800;color:#111;margin:0 0 6px">Scott Contessa Active eRide 920</h3>
+            <p style="font-size:13px;color:#888;margin:0 0 10px"><strong>Dostupné veľkosti:</strong> S a M</p>
+            <div class="jb-bike-photo"><img src="https://cdn.myshoptet.com/usr/www.jericho.bike/user/documents/upload/1.jpg" alt="Scott Contessa Active eRide 920"></div>
+            <p style="color:#555;font-size:14px;line-height:1.6;margin:0 0 12px">Univerzálny e-MTB hardtail vhodný na rekreačné jazdenie, výlety, lesné a poľné cesty aj bežné objavovanie okolia.</p>
+            <p style="margin:0;font-size:14px;color:#111"><strong>Cena: 35 € / deň</strong> &nbsp;·&nbsp; Vratná kaucia: 300 €</p>
+          </div>
+          <div class="jb-card">
+            <h3 style="font-size:18px;font-weight:800;color:#111;margin:0 0 6px">Scott Contessa Strike eRide 930</h3>
+            <p style="font-size:13px;color:#888;margin:0 0 10px"><strong>Dostupná veľkosť:</strong> L</p>
+            <div class="jb-bike-photo"><img src="https://cdn.myshoptet.com/usr/www.jericho.bike/user/documents/upload/2.jpg" alt="Scott Contessa Strike eRide 930"></div>
+            <p style="color:#555;font-size:14px;line-height:1.6;margin:0 0 12px">Celoodpružený e-bike pre jazdcov, ktorí chcú viac pohodlia a istoty aj v náročnejšom teréne. Vhodný na dlhšie výjazdy a rozbitejšie traily.</p>
+            <p style="margin:0;font-size:14px;color:#111"><strong>Cena: 45 € / deň</strong> &nbsp;·&nbsp; Vratná kaucia: 300 €</p>
+          </div>
+        </div>
+
+        <h2 style="font-size:clamp(20px,3vw,28px);font-weight:800;color:#111;margin:0 0 20px">Ako funguje prenájom</h2>
+        <div class="jb-grid jb-grid-3" style="gap:16px;margin-bottom:32px">
+          <div class="jb-card" style="padding:20px"><div style="font-size:22px;margin-bottom:8px">📋</div><strong style="font-size:15px;color:#111">1. Rezervácia</strong><p style="font-size:13px;color:#555;margin:8px 0 0;line-height:1.5">Dohodneme termín prenájmu a pripravíme bicykel.</p></div>
+          <div class="jb-card" style="padding:20px"><div style="font-size:22px;margin-bottom:8px">✍️</div><strong style="font-size:15px;color:#111">2. Prevzatie bicykla</strong><p style="font-size:13px;color:#555;margin:8px 0 0;line-height:1.5">Podpisuje sa zmluva a vypĺňa odovzdávací protokol.</p></div>
+          <div class="jb-card" style="padding:20px"><div style="font-size:22px;margin-bottom:8px">🚵</div><strong style="font-size:15px;color:#111">3. Jazda</strong><p style="font-size:13px;color:#555;margin:8px 0 0;line-height:1.5">Počas prenájmu zodpovedá nájomca za bicykel.</p></div>
+          <div class="jb-card" style="padding:20px"><div style="font-size:22px;margin-bottom:8px">🔄</div><strong style="font-size:15px;color:#111">4. Vrátenie bicykla</strong><p style="font-size:13px;color:#555;margin:8px 0 0;line-height:1.5">Spisuje sa preberací protokol a zaznamenáva stav.</p></div>
+          <div class="jb-card" style="padding:20px"><div style="font-size:22px;margin-bottom:8px">🔧</div><strong style="font-size:15px;color:#111">5. Kontrola mechanikom</strong><p style="font-size:13px;color:#555;margin:8px 0 0;line-height:1.5">Bicykel prechádza technickou kontrolou.</p></div>
+          <div class="jb-card" style="padding:20px"><div style="font-size:22px;margin-bottom:8px">💰</div><strong style="font-size:15px;color:#111">6. Vrátenie kaucie</strong><p style="font-size:13px;color:#555;margin:8px 0 0;line-height:1.5">Kaucia sa vracia do 24 hodín po kontrole bicykla.</p></div>
+        </div>
+
+        <div class="jb-grid jb-grid-2" style="gap:20px;margin-bottom:32px">
+          <div class="jb-card">
+            <h3 style="font-size:16px;font-weight:800;color:#111;margin:0 0 12px">Základné pravidlá</h3>
+            <div class="jb-list">
+              <div class="jb-list-item"><span class="jb-check">✓</span><span style="font-size:14px;color:#555">Prenájom prebieha na základe zmluvy.</span></div>
+              <div class="jb-list-item"><span class="jb-check">✓</span><span style="font-size:14px;color:#555">Pri prevzatí aj vrátení bicykla sa vypĺňa protokol.</span></div>
+              <div class="jb-list-item"><span class="jb-check">✓</span><span style="font-size:14px;color:#555">Nájomca zodpovedá za bicykel počas prenájmu.</span></div>
+              <div class="jb-list-item"><span class="jb-check">✓</span><span style="font-size:14px;color:#555">Bicykel je potrebné zabezpečiť proti krádeži.</span></div>
+            </div>
+          </div>
+          <div class="jb-card">
+            <h3 style="font-size:16px;font-weight:800;color:#111;margin:0 0 12px">Kaucia a poškodenia</h3>
+            <div class="jb-list">
+              <div class="jb-list-item"><span class="jb-check">✓</span><span style="font-size:14px;color:#555">Pri prenájme sa skladá vratná kaucia.</span></div>
+              <div class="jb-list-item"><span class="jb-check">✓</span><span style="font-size:14px;color:#555">Náklady na opravu sa môžu odpočítať z kaucie.</span></div>
+              <div class="jb-list-item"><span class="jb-check">✓</span><span style="font-size:14px;color:#555">Výška nákladov sa riadi orientačným cenníkom servisu.</span></div>
+              <div class="jb-list-item"><span class="jb-check">✓</span><span style="font-size:14px;color:#555">Kauciu nie je možné nárokovať okamžite bez kontroly.</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid #e0e0e0;margin:0 0 32px">
+
+    
     <div class="calendar-card">
       <div class="cal-header">
         <div class="cal-title" id="cal-month-label"></div>
@@ -639,7 +832,7 @@ if (window.self !== window.top) {
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ═══════════════════════════════════════════════════════════════════
 //  KONFIGURÁCIA
 // ═══════════════════════════════════════════════════════════════════
@@ -678,8 +871,8 @@ let adminCalBikeId = null;
 function setSyncState(state) {
   const dot   = document.getElementById('sync-dot');
   const label = document.getElementById('sync-label');
-  dot.className   = 'sync-dot ' + (state === 'syncing' ? 'syncing' : state === 'error' ? 'error' : '');
-  label.textContent = state === 'syncing' ? 'Synchronizujem...' : state === 'error' ? 'Chyba spojenia' : 'Online';
+  if (dot) dot.className = 'sync-dot ' + (state === 'syncing' ? 'syncing' : state === 'error' ? 'error' : '');
+  if (label) label.textContent = state === 'syncing' ? 'Synchronizujem...' : state === 'error' ? 'Chyba spojenia' : 'Online';
 }
 
 async function apiCall(action, data = {}) {
@@ -1613,8 +1806,8 @@ async function init() {
     catch (e) { console.warn('Init error:', e); }
   }
   renderCalendar();
-  loadingEl.classList.add('hidden');
-  setTimeout(() => loadingEl.style.display = 'none', 400);
+  const _lel = document.getElementById('loading-screen');
+  if (_lel) { _lel.classList.add('hidden'); setTimeout(() => _lel.style.display = 'none', 400); }
 }
 
 init();
@@ -1633,13 +1826,4 @@ reportHeight();
 </script>
 <!-- PRICELIST MODAL -->
 <div id="pricelist-modal">
-  <div id="pricelist-modal-backdrop" onclick="closePriceListModal()"></div>
-  <div id="pricelist-modal-box">
-    <button class="pl-close" onclick="closePriceListModal()">✕</button>
-    <div class="pl-bike-name" id="pricelist-modal-name"></div>
-    <table id="pricelist-modal-table"></table>
-  </div>
-</div>
-
-</body>
-</html>
+  <div id="priceli
