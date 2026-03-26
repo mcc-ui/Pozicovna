@@ -6,7 +6,7 @@
 (function() {
   'use strict';
 
-  const API = 'https://script.google.com/macros/s/AKfycbzlfF6tyGa2gQ-vngR2dcZwRjZHAEhJ54m6Hqe-C88reEzsA3N1qyR25vkMiNffKX88/exec';
+  const API = 'https://script.google.com/macros/s/AKfycbwCS6E8GhIDKL5O1jEJbTbJuNX1IWBBzg69aI5HtGzsZJ_gqR2LYZaxqxYbS9Zklyqb/exec';
   const ADMIN_HASH = '#admin-jericho';
   const ADMIN_PASS = 'admin123';
 
@@ -83,42 +83,22 @@
         ...r,
         bikeIds: (function(raw) {
           if (!raw) return [];
-          var ids = [];
-          // Normalizuj na string a rozdeľ
-          var s = Array.isArray(raw) ? raw.join(',') : String(raw);
-          // Nahraď bodku čiarkou (SK desatinný formát: 1.2 = "1,2")
-          // ale len ak je to celé číslo s bodkou, nie skutočný float s desatinami
-          // "1.2" → "1,2", "1.20" → "1,20" → split → [1, 20] nie je správne
-          // Lepšie: ak array obsahuje float, rozdeľ ho
-          if (Array.isArray(raw)) {
-            raw.forEach(function(x) {
-              var n = Number(x);
-              if (Number.isInteger(n)) {
-                ids.push(n);
-              } else {
-                // Float napr 1.2 → interpretuj ako "1,2" → [1, 2]
-                String(x).split('.').forEach(function(p) {
-                  var v = parseInt(p, 10);
-                  if (!isNaN(v) && v > 0) ids.push(v);
-                });
-              }
-            });
-            return ids;
+          // Konvertuj na string a normalizuj oddeľovače
+          var s = Array.isArray(raw) ? raw.join(',') : String(raw).trim();
+          // JSON array format "[1,2]"
+          if (s.charAt(0) === '[') {
+            try { return JSON.parse(s).map(Number).filter(function(x){return x>0;}); } catch(e){}
           }
-          // String: "1,2" alebo "1;2" alebo "1.2"
-          return s.replace(/\./g, ',').split(/[,;]/).map(function(x) {
-            return parseInt(x.trim(), 10);
-          }).filter(function(x) { return !isNaN(x) && x > 0; });
+          // Float "1.2" = SK locale pre "1,2" → rozdeľ podľa bodky
+          if (s.indexOf('.') > -1 && s.indexOf(',') === -1 && s.indexOf(';') === -1) {
+            return s.split('.').map(function(x){return parseInt(x.trim(),10);}).filter(function(x){return !isNaN(x)&&x>0;});
+          }
+          // CSV "1,2" alebo "1;2"
+          return s.split(/[,;]/).map(function(x){return parseInt(x.trim(),10);}).filter(function(x){return !isNaN(x)&&x>0;});
         })(r.bikeIds)
       }));
       state.documents = data.documents || {};
       state.loading = false;
-      // Debug - skontroluj dáta v konzole
-      if (state.reservations.length) {
-        const r = state.reservations[0];
-        console.log('[JB] Rezervácia:', JSON.stringify({id: r.id, from: r.from, to: r.to, bikeIds: r.bikeIds}));
-        console.log('[JB] Bikes:', state.bikes.map(b => ({id: b.id, type: typeof b.id})));
-      }
       if (!silent) render();
     } catch(e) {
       state.error = e.message;
