@@ -94,7 +94,7 @@
 
   // ── CSS ──────────────────────────────────────────────────────────
   const CSS = `
-  #jb-rez { font-family: inherit; color: #111; }
+  #jb-rez { font-family: inherit; color: #111; font-size: 16px !important; }
   #jb-rez * { box-sizing: border-box; }
   #jb-rez a { color: inherit; }
 
@@ -116,7 +116,7 @@
   .jb-dots { display:flex; gap:3px; justify-content:center; }
   .jb-dot-g { width:9px; height:9px; border-radius:50%; background:#22c55e; }
   .jb-dot-r { width:9px; height:9px; border-radius:50%; background:#ef4444; }
-  .jb-legend { display:flex; gap:16px; margin-top:14px; font-size:.88rem; color:#555; }
+  .jb-legend { display:flex; gap:16px; margin-top:14px; font-size:14px; color:#555; }
   .jb-legend-item { display:flex; align-items:center; gap:5px; }
 
   /* Modal overlay */
@@ -126,8 +126,8 @@
   @keyframes jbSlide { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
   .jb-modal-close { position:absolute; top:14px; right:14px; width:30px; height:30px; border-radius:6px; border:1px solid #e5e5e5; background:#fff; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; color:#777; transition:.15s; }
   .jb-modal-close:hover { background:#111; color:#fff; }
-  .jb-modal-title { font-size:1.4rem; font-weight:700; margin-bottom:6px; }
-  .jb-modal-sub { font-size:.95rem; color:#666; margin-bottom:20px; }
+  .jb-modal-title { font-size:22px; font-weight:700; margin-bottom:6px; }
+  .jb-modal-sub { font-size:15px; color:#666; margin-bottom:20px; }
 
   /* Bicykle výber */
   .jb-bikes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:18px; }
@@ -138,9 +138,9 @@
   .jb-bike-card.unavail { opacity:.35; cursor:not-allowed; pointer-events:none; }
   .jb-bike-card img { width:100%; height:110px; object-fit:contain; border-radius:6px; margin-bottom:8px; background:#f8f8f8; padding:4px; }
   .jb-bike-ph { width:100%; height:110px; border-radius:6px; margin-bottom:8px; background:#f5f5f5; display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
-  .jb-bike-name { font-size:.95rem; font-weight:700; color:#111; margin-bottom:3px; }
-  .jb-bike-size { font-size:.82rem; color:#666; margin-bottom:4px; }
-  .jb-bike-price { font-size:.92rem; font-weight:700; color:#cd433d; }
+  .jb-bike-name { font-size:15px; font-weight:700; color:#111; margin-bottom:3px; }
+  .jb-bike-size { font-size:13px; color:#666; margin-bottom:4px; }
+  .jb-bike-price { font-size:14px; font-weight:700; color:#cd433d; }
   .jb-bike-check { position:absolute; top:8px; right:8px; width:20px; height:20px; border-radius:50%; background:#cd433d; color:#fff; display:none; align-items:center; justify-content:center; font-size:.7rem; }
   .jb-bike-card.sel .jb-bike-check { display:flex; }
 
@@ -148,16 +148,16 @@
   .jb-form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
   @media(max-width:480px) { .jb-form-row { grid-template-columns:1fr; } }
   .jb-fg { display:flex; flex-direction:column; gap:4px; }
-  .jb-fg label { font-size:.82rem; font-weight:700; text-transform:uppercase; letter-spacing:.3px; color:#222; }
-  .jb-fg input { padding:11px 14px; border:1px solid #e5e5e5; border-radius:8px; font-size:.95rem; font-family:inherit; color:#111; background:#fff; outline:none; transition:.15s; width:100%; }
+  .jb-fg label { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.3px; color:#222; }
+  .jb-fg input { padding:11px 14px; border:1px solid #e5e5e5; border-radius:8px; font-size:15px; font-family:inherit; color:#111; background:#fff; outline:none; transition:.15s; width:100%; }
   .jb-fg input:focus { border-color:#cd433d; box-shadow:0 0 0 2px rgba(205,67,61,.1); }
   .jb-price-box { background:#111; color:#fff; border-radius:10px; padding:14px 18px; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between; }
-  .jb-price-total { font-size:2rem; font-weight:700; }
-  .jb-price-detail { font-size:.85rem; color:rgba(255,255,255,.6); margin-top:2px; }
+  .jb-price-total { font-size:32px; font-weight:700; }
+  .jb-price-detail { font-size:13px; color:rgba(255,255,255,.6); margin-top:2px; }
   .jb-doc-links { display:flex; flex-direction:column; gap:5px; margin-bottom:14px; }
-  .jb-doc-link { font-size:.8rem; color:#cd433d; background:none; border:none; padding:0; cursor:pointer; text-decoration:underline; text-align:left; }
+  .jb-doc-link { font-size:14px; color:#cd433d; background:none; border:none; padding:0; cursor:pointer; text-decoration:underline; text-align:left; }
   .jb-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:4px; }
-  .jb-btn { display:inline-flex; align-items:center; gap:5px; padding:9px 18px; border-radius:8px; border:none; cursor:pointer; font-family:inherit; font-size:.84rem; font-weight:600; transition:.15s; text-decoration:none; }
+  .jb-btn { display:inline-flex; align-items:center; gap:5px; padding:10px 20px; border-radius:8px; border:none; cursor:pointer; font-family:inherit; font-size:15px; font-weight:600; transition:.15s; text-decoration:none; }
   .jb-btn-primary { background:#cd433d; color:#fff; }
   .jb-btn-primary:hover { background:#a8332e; }
   .jb-btn-primary:disabled { opacity:.55; cursor:not-allowed; }
