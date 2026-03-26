@@ -74,7 +74,7 @@
     return json.data;
   }
 
-  async function loadData() {
+  async function loadData(silent) {
     try {
       const data = await apiCall('getAll');
       state.bikes = data.bikes || [];
@@ -85,11 +85,11 @@
       }));
       state.documents = data.documents || {};
       state.loading = false;
-      render();
+      if (!silent) render();
     } catch(e) {
       state.error = e.message;
       state.loading = false;
-      render();
+      if (!silent) render();
     }
   }
 
@@ -786,8 +786,8 @@
       }
 
       closeModal('jb-res-modal');
-      // Refresh dát z databázy aby všetky zariadenia videli aktuálnu dostupnosť
-      loadData();
+      // Refresh dát na pozadí — silent, nespúšťa render aby nezatvoril modal
+      loadData(true);
 
       // Zobraziť ďakovnú stránku
       const bikeNames = selectedBikeIds.map(id => state.bikes.find(b=>b.id===id)?.name||id).join(', ');
@@ -836,5 +836,7 @@
   // ── ŠTART ─────────────────────────────────────────────────────────
   render(); // Zobraz loading stav
   loadData(); // Načítaj dáta
+  // Auto-refresh každých 30 sekúnd — aktuálna dostupnosť na všetkých zariadeniach
+  setInterval(function() { loadData(true); }, 30000);
 
 })();
