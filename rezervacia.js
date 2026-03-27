@@ -6,7 +6,7 @@
 (function() {
   'use strict';
 
-  const API = 'https://script.google.com/macros/s/AKfycbzlfF6tyGa2gQ-vngR2dcZwRjZHAEhJ54m6Hqe-C88reEzsA3N1qyR25vkMiNffKX88/exec';
+  const API = 'https://script.google.com/macros/s/AKfycbxKmc6coGPrUPo5olpHQVLacRL4aX51q9VvQBhZTWs4ODIk-Czy4RKPoiCZBzLNIo-_/exec';
   const ADMIN_HASH = '#admin-jericho';
   const ADMIN_PASS = 'admin123';
 
